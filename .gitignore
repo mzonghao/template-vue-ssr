@@ -1,0 +1,11 @@
+node_modules
+.idea/
+npm-debug.log
+configs/config.local.*
+dump.rdb
+yarn.lock
+.DS_Store
+dist-m
+app-production.js
+npm-debug.log.*
+public/ci.txt
