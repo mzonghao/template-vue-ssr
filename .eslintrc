@@ -1,0 +1,32 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb-base",
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "configs/webpack.base.config.js"
+      }
+    },
+    "import/core-modules": [
+      "public", "core", "components"
+    ]
+  },
+  "plugins": [
+    "html"
+  ],
+  "globals": {
+    "window": true,
+    "document": true,
+    "wx": true,
+    "BMQB": true,
+    "$": true,
+    "jquery": true
+  },
+  "rules": {
+    "no-console": [1],
+    "semi": [2, "always"],
+    "comma-dangle": [2, "never"],
+    "global-require": [0],
+    "class-methods-use-this": [0]
+  }
+}
