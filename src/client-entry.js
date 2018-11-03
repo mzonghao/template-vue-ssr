@@ -15,6 +15,7 @@ setupApp();
 const { app, router, store } = bootstrap();
 DI.bindValue('router', router);
 DI.bindValue('store', store);
+DI.bindValue('vue', app);
 
 /* eslint-disable no-underscore-dangle */
 if (window && window.__INITIAL_STATE__) {

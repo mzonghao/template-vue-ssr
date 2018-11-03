@@ -3,6 +3,7 @@ export config from './config';
 export clientStorage from './localStorage';
 export * as constants from './constants';
 export * as filter from './filter';
+export * as plugins from './plugins';
 export * as services from './services';
 export * as Router from './router';
 export * as Store from './store';

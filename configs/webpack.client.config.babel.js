@@ -38,6 +38,11 @@ const clientConfig = merge(baseConfig, {
   output: {
     publicPath: !isDev && cdn ? cdn : `${configBase.buildDir}/`
   },
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.common.js' // vue plugin 独立编译
+    }
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env),

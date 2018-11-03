@@ -9,3 +9,4 @@ dist
 index-production.js
 npm-debug.log.*
 public/ci.txt
+package-lock.json

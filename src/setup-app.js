@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import {
-  DI, config, clientStorage, constants, filter, services,
-  Router, Store, SSR, utils
+  DI, config, clientStorage, constants, filter, plugins,
+  services, Router, Store, SSR, utils
 } from 'core';
 import { Root } from 'components';
 
@@ -10,7 +10,8 @@ const isDev = process.env.NODE_ENV === 'development';
 const isClient = process.env.VUE_ENV === 'client';
 const { createRouter } = Router;
 const { createStore } = Store;
-// bind all values
+
+// setup app, bind all values
 export const setupApp = () => {
   DI.bindValue('isDev', isDev);
   DI.bindValue('isClient', isClient);
@@ -28,9 +29,14 @@ export const setupApp = () => {
 Object.keys(filter).forEach((key) => {
   Vue.filter(key, filter[key]);
 });
+
+Object.keys(plugins).forEach((key) => {
+  Vue.use(plugins[key]);
+});
+
 Vue.use(VueRouter);
 
-// setup new instance
+// create new instance
 export const bootstrap = () => {
   const router = createRouter();
   const store = createStore();

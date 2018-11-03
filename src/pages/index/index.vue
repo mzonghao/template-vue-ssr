@@ -4,6 +4,12 @@
     <div @click="goToNext">
       gotonext
     </div>
+    <div @click="messageText('1111')">
+      ddd
+    </div>
+    <div @click="messageText('2222')">
+      fff
+    </div>
   </div>
 </template>
 
@@ -22,10 +28,6 @@
     },
 
     mounted() {
-      console.log(this.list, 'list');
-      console.log(DI.get('VIRTUAL_COIN'));
-      console.log(Message);
-      console.log(JSON.stringify(Message));
       Message('eese');
     },
 
@@ -38,6 +40,9 @@
     methods: {
       goToNext() {
         DI.get('router').push('/next');
+      },
+      messageText(text) {
+        Message(text);
       }
     }
   };

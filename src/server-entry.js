@@ -11,6 +11,7 @@ export default context => (
 
     DI.bindValue('router', router);
     DI.bindValue('store', store);
+    DI.bindValue('vue', app);
     router.push(req.url);
 
     router.onReady(() => {
