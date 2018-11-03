@@ -17,6 +17,10 @@
         });
     },
 
+    mounted() {
+      DI.get('utils').setTitle('次页');
+    },
+
     computed: {
       list() {
         return DI.get('ssr').getContent('next');

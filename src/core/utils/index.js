@@ -31,6 +31,11 @@ export default class Utils {
     return flag;
   }
 
+  setTitle(title) {
+    DI.get('vue').$emit('set-title', title);
+    document.title = title;
+  }
+
   loadScript(url) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');

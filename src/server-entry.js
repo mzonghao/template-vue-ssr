@@ -48,7 +48,7 @@ export default context => (
         .then(() => {
           Object.assign(context, { state: store.state });
           if (DI.get('isDev')) {
-            console.log(`fetch: ${Date.now() - t}ms`);
+            console.log(`fetch: ${Date.now() - t}ms`); //eslint-disable-line
           }
           resolve(app);
         })

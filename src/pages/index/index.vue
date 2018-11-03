@@ -28,7 +28,7 @@
     },
 
     mounted() {
-      Message('eesdde');
+      DI.get('utils').setTitle('首页');
     },
 
     computed: {
@@ -41,6 +41,7 @@
       goToNext() {
         DI.get('router').push('/next');
       },
+
       messageText(text) {
         Message(text);
       }
