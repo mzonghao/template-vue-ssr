@@ -21,7 +21,7 @@ const setupDevServer =  (app, cb) => {
   };
   const hmr = `webpack-hot-middleware/client?path=http://localhost:${configBase.port}/__webpack_hmr`;
   clientConfig.entry.app = [hmr, clientConfig.entry.app];
-  clientConfig.output.filename = '[name].js';
+  clientConfig.output.filename = '[name].js'; // dev remove hash
   clientConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()

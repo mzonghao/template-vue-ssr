@@ -23,7 +23,7 @@
       return DI.get('requestCommon').getUsers()
         .then(data => (data))
         .catch((e) => {
-          console.log(e, 'error');
+          DI.get('ssr').handleError(e);
         });
     },
 
