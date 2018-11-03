@@ -6,38 +6,27 @@
     >去主页</div>
     <div :class="styles.container">
       <div :class="styles.title">
-        <span>这是首页，渲染</span>
-        <span :class="styles.strong"> 500 </span>
+        <span>这是次页，渲染</span>
+        <span :class="styles.strong"> {{users.length}} </span>
         <span>条数据</span>
       </div>
-      <table cellspacing="2">
-        <thead>
-        <tr>
-          <th>姓名</th>
-          <th>城市</th>
-          <th>管理员</th>
-          <th>创建时间</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="user in users">
-          <td>{{user.name}}</td>
-          <td>{{user.city}}</td>
-          <td>{{user.isAdmin | translateIsAdmin}}</td>
-          <td>{{user.createdAt | formatDate}}</td>
-        </tr>
-        </tbody>
-      </table>
+      <user-table :users="users"></user-table>
     </div>
   </div>
 </template>
 
 <script>
   import { DI } from 'core';
+  import { UserTable } from 'components';
   import styles from '../index/index.less';
 
   export default {
     name: 'next',
+
+    components: {
+      'user-table': UserTable
+    },
+
     asyncData() {
       return DI.get('requestCommon').getUsers('500')
         .then(data => (data))
