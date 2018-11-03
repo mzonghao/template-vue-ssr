@@ -1,1 +1,2 @@
-export Toast from './toast';
+export pluginToast from './toast';
+export pluginBar from './progress-bar';

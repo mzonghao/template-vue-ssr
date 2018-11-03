@@ -25,14 +25,17 @@ export const setupApp = () => {
   DI.bindClass('utils', utils);
 };
 
-// register vue
-Object.keys(filter).forEach((key) => {
-  Vue.filter(key, filter[key]);
-});
+// register vue plugins
+export const setupVuePlugins = () => {
+  Object.keys(filter).forEach((key) => {
+    Vue.filter(key, filter[key]);
+  });
 
-Object.keys(plugins).forEach((key) => {
-  Vue.use(plugins[key]);
-});
+  Object.keys(plugins).forEach((key) => {
+    Vue.use(plugins[key]);
+  });
+};
+
 
 Vue.use(VueRouter);
 

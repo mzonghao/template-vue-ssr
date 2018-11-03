@@ -1,22 +1,17 @@
-import Vue from 'vue';
 import 'es6-promise/auto';
 import each from 'lodash/each';
 import { DI } from 'core';
-import { ProgressBar } from './components';
-import { setupApp, bootstrap } from './setup-app';
-
-// add progress bar
-Vue.prototype.$bar = new Vue(ProgressBar).$mount();
-const bar = Vue.prototype.$bar;
-document.body.appendChild(bar.$el);
+import { setupApp, setupVuePlugins, bootstrap } from './setup-app';
 
 // setupApp
 setupApp();
 const { app, router, store } = bootstrap();
+DI.bindValue('vue', app);
 DI.bindValue('router', router);
 DI.bindValue('store', store);
-DI.bindValue('vue', app);
+setupVuePlugins();
 
+const LoadingBar = DI.get('vue').$bar;
 /* eslint-disable no-underscore-dangle */
 if (window && window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__);
@@ -55,12 +50,12 @@ router.onReady(() => {
     if (!activated.length) {
       return next();
     }
-    bar.start();
+    LoadingBar.start();
     preFilter(activated);
     return Promise.all(preFetchPromises)
       .then(() => {
         window.scrollTo(0, 0);
-        bar.finish();
+        LoadingBar.finish();
         next();
       })
       .catch(next);

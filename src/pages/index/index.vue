@@ -28,7 +28,7 @@
     },
 
     mounted() {
-      Message('eese');
+      Message('eesdde');
     },
 
     computed: {

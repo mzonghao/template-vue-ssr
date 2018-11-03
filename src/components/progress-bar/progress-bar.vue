@@ -10,6 +10,7 @@
 <script>
   /* eslint-disable no-underscore-dangle */
   export default {
+    props: ['color'],
     data() {
       return {
         percent: 0,
@@ -17,7 +18,6 @@
         canSuccess: true,
         duration: 3000,
         height: '2px',
-        color: '#1890FF',
         failedColor: '#FFCA2B'
       };
     },

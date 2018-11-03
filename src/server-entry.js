@@ -1,17 +1,18 @@
 import { DI } from 'core';
 import each from 'lodash/each';
-import { setupApp, bootstrap } from './setup-app';
+import { setupApp, setupVuePlugins, bootstrap } from './setup-app';
 
 export default context => (
   new Promise((resolve, reject) => {
     setupApp();
-    const t = DI.get('isDev') && Date.now();
     const { app, router, store } = bootstrap();
-    const { req } = context;
-
+    DI.bindValue('vue', app);
     DI.bindValue('router', router);
     DI.bindValue('store', store);
-    DI.bindValue('vue', app);
+    setupVuePlugins();
+
+    const t = DI.get('isDev') && Date.now();
+    const { req } = context;
     router.push(req.url);
 
     router.onReady(() => {

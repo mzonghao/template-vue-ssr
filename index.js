@@ -7,7 +7,7 @@ import configBase from './configs/config.base';
 
 const port = process.env.PORT || configBase.port;
 const isDev = process.env.NODE_ENV === 'development';
-const app = new express();
+const app = express();
 // dir&file
 const resolve = file => path.resolve(__dirname, file);
 const publicDir = resolve('./public');  // 静态文件目录

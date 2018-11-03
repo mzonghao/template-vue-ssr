@@ -1,8 +1,9 @@
 import { Toast } from 'components';
 
 const pluginToast = {
-  $el: null,
-  install: null
+  install: null,
+  instance: null,
+  $el: null
 };
 
 pluginToast.install = (Vue, options) => {
@@ -20,15 +21,15 @@ pluginToast.install = (Vue, options) => {
   Vue.prototype.$toast = (text) => { //eslint-disable-line
     const ToastFunc = Vue.extend(Toast);
 
-    const toastNode = new ToastFunc({
+    pluginToast.instance = new ToastFunc({
       propsData: {
         text
       }
-    }).$mount().$el;
+    }).$mount();
 
     if (!pluginToast.$el) {
-      pluginToast.$el = toastNode;
-      document.body.appendChild(toastNode);
+      pluginToast.$el = pluginToast.instance.$el;
+      document.body.appendChild(pluginToast.$el);
 
       setTimeout(() => {
         document.body.removeChild(pluginToast.$el);
