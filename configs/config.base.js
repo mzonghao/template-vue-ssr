@@ -2,7 +2,7 @@ const configBase = {
   port: 18100,
   buildDir: '/dist',
   cdn: '',
-  progressBarColor: '#F05A50'
+  progressBarColor: '#1890FF'
 };
 
 module.exports = configBase;

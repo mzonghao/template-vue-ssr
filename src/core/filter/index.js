@@ -10,3 +10,7 @@ export function formatMobile(m) {
   const s = String(m);
   return !s ? '' : `${s.slice(0, 3)}${s.slice(3, -4).replace(/./g, '*')}${s.slice(-4)}`;
 }
+
+export function translateIsAdmin(a) {
+  return a ? '是' : '否';
+}
