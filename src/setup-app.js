@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import {
-  DI, config, clientStorage, constants, filter, plugins,
-  services, Router, Store, SSR, utils
+  DI, Config, ClientStorage, Cookie, constants,
+  filter, plugins, services, Router, Store, SSR, Utils
 } from 'core';
 import { Root } from 'components';
 
@@ -16,13 +16,14 @@ export const setupApp = () => {
   DI.bindValue('isDev', isDev);
   DI.bindValue('isClient', isClient);
   DI.bindValue('navigator', isClient ? window.navigator : global.navigator);
-  DI.bindClass('config', config);
+  DI.bindClass('config', Config);
   DI.bindClass('ssr', SSR);
-  DI.bindClass('clientStorage', clientStorage);
+  DI.bindClass('clientStorage', ClientStorage);
+  DI.bindClass('cookie', Cookie);
   DI.bindValue('filter', filter);
   DI.bindAllValues(constants);
   DI.bindAllClasses(services);
-  DI.bindClass('utils', utils);
+  DI.bindClass('utils', Utils);
 };
 
 // register vue plugins
@@ -35,7 +36,6 @@ export const setupVuePlugins = () => {
     Vue.use(plugins[key]);
   });
 };
-
 
 Vue.use(VueRouter);
 

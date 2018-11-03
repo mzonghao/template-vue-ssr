@@ -1,6 +1,7 @@
 export DI from './di';
-export config from './config';
-export clientStorage from './localStorage';
+export Config from './config';
+export ClientStorage from './localStorage';
+export Cookie from './cookie';
 export * as constants from './constants';
 export * as filter from './filter';
 export * as plugins from './plugins';
@@ -8,4 +9,4 @@ export * as services from './services';
 export * as Router from './router';
 export * as Store from './store';
 export SSR from './ssr';
-export utils from './utils';
+export Utils from './utils';
