@@ -2,8 +2,8 @@
 
 ## 目录
 - [分支概况](#分支概况)
-    * Express 版
-    * Koa 版
+    * [Express版](#Express版)
+    * [Koa版](#Koa版)
 - [使用文档](#使用文档)
     * [ssr](#ssr)
     * [ajax](#ajax)
@@ -21,6 +21,11 @@
 ******
 
 ## 分支概况
+
+### Express版
+* [点击打开 base 分支](https://github.com/mzonghao/template-vue-ssr/tree/base)
+### Koa版
+* [点击打开 base-with-koa 分支](https://github.com/mzonghao/template-vue-ssr/tree/base-with-koa)
 
 ## 使用文档
 
