@@ -1,13 +1,17 @@
 import fs from 'fs';
 import path from 'path';
-import express from 'express';
-import cookieParser from 'cookie-parser';
+import Koa from 'koa';
+import KoaRouter from 'koa-router';
+import koaMount from 'koa-mount';
+import koaStatic from 'koa-static';
+import koaCookie from 'koa-cookie';
 import { createBundleRenderer } from 'vue-server-renderer';
 import configBase from './configs/config.base';
 
 const port = process.env.PORT || configBase.port;
 const isDev = process.env.NODE_ENV === 'development';
-const app = express();
+const app = new Koa();
+const router = new KoaRouter();
 // dir&file
 const resolve = file => path.resolve(__dirname, file);
 const publicDir = resolve('./public'); // 静态文件目录
@@ -19,17 +23,20 @@ const template = fs.readFileSync(resolve('./src/index.template.html'), 'utf-8');
 const staticConfig = {
   maxAge: isDev ? 0 : 1000 * 60 * 60 * 24 * 30
 };
-app.use(configBase.buildDir, express.static(distDir, staticConfig));
-app.use('/public', express.static(publicDir, staticConfig));
+
+app.use(koaMount(configBase.buildDir, koaStatic(distDir, staticConfig)));
+app.use(koaMount('/public', koaStatic(publicDir, staticConfig)));
 
 // cookie、header etc.
-app.use(cookieParser());
-app.use((req, res, next) => {
+
+app.use(koaCookie());
+app.use(async (ctx, next) => {
+  const { req } = ctx;
   global.navigator = {
     userAgent: req.headers['user-agent']
   };
   global.reqHeaders = req.headers;
-  next();
+  await next();
 });
 
 // ssr
@@ -44,36 +51,34 @@ const createRenderer = (bundle, options) => (
   }))
 );
 
-const handleError = (req, res, err) => {
+const handleError = (ctx, err) => {
   const { code } = err;
   if (code === 404) {
-    res.status(404).end('404');
+    ctx.status = 404;
   } else if (code === 301) {
     res.redirect(err.path);
   } else {
-    res.status(500).end('500');
+    ctx.status = 500;
     console.error(`render error: ${req.url}`);
     console.error(err.stack);
   }
 };
 
-const render = (req, res, renderer) => {
+const render = async (ctx, renderer) => {
   const s = Date.now();
-
-  res.setHeader('Content-Type', 'text/html');
+  const { req, res } = ctx;
+  ctx.set('Content-Type', 'text/html');
 
   const context = {
     title: '',
     req
   };
 
-  renderer.renderToString(context)
-    .then((html) => {
-      res.end(html);
-    })
-    .catch((err) => {
-      handleError(req, res, err);
-    });
+  try {
+    ctx.body = await renderer.renderToString(context);
+  } catch (err) {
+    handleError(req, res, err);
+  }
 
   if (isDev) {
     console.log(`request: ${Date.now() - s}ms`);
@@ -92,13 +97,14 @@ if (isDev) {
   });
 }
 
-app.get('*', (req, res) => {
+router.get('*', (ctx) => {
   if (isDev) {
-    readyPromise.then(() => render(req, res, renderer));
-  } else {
-    render(req, res, renderer);
+    return readyPromise.then(() => render(ctx, renderer));
   }
+  return render(ctx, renderer);
 });
+
+app.use(router.routes());
 
 app.listen(port, () => {
   console.log(`> Ready on http://localhost:${port}`);

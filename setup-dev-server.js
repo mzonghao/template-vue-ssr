@@ -2,11 +2,17 @@
 import path from 'path';
 import webpack from 'webpack';
 import MFS from 'memory-fs';
+
+import koaWebpackMiddleware from 'koa-webpack-middleware';
 import configBase from './configs/config.base';
 import clientConfig from './configs/webpack.client.config.babel';
 import serverConfig from './configs/webpack.server.config.babel';
 
 const port = process.env.PORT || configBase.port;
+const {
+  devMiddleware: koaDevMiddleware,
+  hotMiddleware: koaHotMiddleware
+} = koaWebpackMiddleware;
 
 const readFile = (fs, file) => {
   try {
@@ -30,7 +36,7 @@ const setupDevServer = (app, cb) => {
     new webpack.NoEmitOnErrorsPlugin()
   );
   const appCompiler = webpack(clientConfig);
-  const devMiddleware = require('webpack-dev-middleware')(appCompiler, {
+  const devMiddleware = koaDevMiddleware(appCompiler, {
     publicPath: `${clientConfig.output.publicPath}`,
     noInfo: true
   });
@@ -51,7 +57,7 @@ const setupDevServer = (app, cb) => {
       });
     }
   });
-  app.use(require('webpack-hot-middleware')(appCompiler));
+  app.use(koaHotMiddleware(appCompiler, { heartbeat: 5000, log: console.log }));
   const serverCompiler = webpack(serverConfig);
   const mfs = new MFS();
   serverCompiler.outputFileSystem = mfs;
