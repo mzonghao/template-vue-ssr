@@ -115,7 +115,7 @@
     ├── config.test.js          测试环境配置 优先度高
     ├── config.production.js    生产环境配置 优先度高
     ├── config.development.local.js 开发环境本地配置 优先度最高 属于 gitignore
-    ├── index.js 会把 config.base.js, config.ENV.js, config.ENV.local.js 合并输出
+    ├── index.js 会把 config.base, config.ENV, config.ENV.local 合并输出
     ├── webpack.base.config.js webpack 浏览器和服务端打包共同配置
     ├── webpack.client.config.babel.js 浏览器端打包配置
     ├── webpack.server.config.babel.js 服务端打包配置
@@ -146,12 +146,12 @@
     ├── server-entry.js     服务器 bundle 打包入口
     ├── setup-app.js        web-app 启动初始化
     ├── index.template.html vue ssr 挂载模版
-├── .babelrc            babel 配置
-├── .eslintrc           eslint 配置
-├── .gitignore          git 忽略文件
-├── index.js            服务端启动服务文件
-├── package.json        项目信息、依赖
-├── README.md           文档
+├── .babelrc                babel 配置
+├── .eslintrc               eslint 配置
+├── .gitignore              git 忽略文件
+├── index.js                服务端启动服务文件
+├── package.json            项目信息、依赖
+├── README.md               文档
 ```
 
 
