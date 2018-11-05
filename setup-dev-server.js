@@ -1,3 +1,4 @@
+/* eslint-disable */
 import path from 'path';
 import webpack from 'webpack';
 import MFS from 'memory-fs';
@@ -7,11 +8,11 @@ import serverConfig from './configs/webpack.server.config.babel';
 
 const readFile = (fs, file) => {
   try {
-    return fs.readFileSync(path.join(clientConfig.output.path, file), 'utf-8')
+    return fs.readFileSync(path.join(clientConfig.output.path, file), 'utf-8');
   } catch (e) {}
 };
 
-const setupDevServer =  (app, cb) => {
+const setupDevServer = (app, cb) => {
   let bundle, appManifest;
   let resolve;
   const readyPromise = new Promise(r => { resolve = r });
@@ -45,7 +46,7 @@ const setupDevServer =  (app, cb) => {
     if (bundle) {
       ready(bundle, {
         clientManifest: appManifest
-      })
+      });
     }
   });
   app.use(require('webpack-hot-middleware')(appCompiler));
@@ -60,10 +61,10 @@ const setupDevServer =  (app, cb) => {
     if (appManifest) {
       ready(bundle, {
         clientManifest: appManifest
-      })
+      });
     }
   });
-  return readyPromise
+  return readyPromise;
 };
 
 module.exports = setupDevServer;
