@@ -3,15 +3,15 @@ import path from 'path';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import { createBundleRenderer } from 'vue-server-renderer';
-import configBase from './configs/config.base';
+import configs from './configs';
 
-const port = process.env.PORT || configBase.port;
+const port = process.env.PORT || configs.port;
 const isDev = process.env.NODE_ENV === 'development';
 const app = express();
 // dir&file
 const resolve = file => path.resolve(__dirname, file);
-const publicDir = resolve('./public');  // 静态文件目录
-const distDir = resolve(`.${configBase.buildDir}`);  // webpack打包目录
+const publicDir = resolve('./public'); // 静态文件目录
+const distDir = resolve(`.${configs.buildDir}`); // webpack打包目录
 const template = fs.readFileSync(resolve('./src/index.template.html'), 'utf-8');
 
 /* middleware */
@@ -19,7 +19,7 @@ const template = fs.readFileSync(resolve('./src/index.template.html'), 'utf-8');
 const staticConfig = {
   maxAge: isDev ? 0 : 1000 * 60 * 60 * 24 * 30
 };
-app.use(configBase.buildDir, express.static(distDir, staticConfig));
+app.use(configs.buildDir, express.static(distDir, staticConfig));
 app.use('/public', express.static(publicDir, staticConfig));
 
 // cookie、header etc.
@@ -85,8 +85,8 @@ if (isDev) {
     renderer = createRenderer(bundle, options);
   });
 } else {
-  const bundle = require(`.${configBase.buildDir}/vue-ssr-server-bundle.json`);
-  const clientManifest = require(`.${configBase.buildDir}/vue-ssr-client-manifest.json`);
+  const bundle = require(`.${configs.buildDir}/vue-ssr-server-bundle.json`);
+  const clientManifest = require(`.${configs.buildDir}/vue-ssr-client-manifest.json`);
   renderer = createRenderer(bundle, {
     clientManifest
   });
@@ -101,5 +101,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`> Ready on http://localhost:${port}`)
+  console.log(`> Ready on http://localhost:${port}`);
 });
