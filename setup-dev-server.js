@@ -2,9 +2,11 @@
 import path from 'path';
 import webpack from 'webpack';
 import MFS from 'memory-fs';
-import configs from './configs';
+import configBase from './configs/config.base';
 import clientConfig from './configs/webpack.client.config.babel';
 import serverConfig from './configs/webpack.server.config.babel';
+
+const port = process.env.PORT || configBase.port;
 
 const readFile = (fs, file) => {
   try {
@@ -20,7 +22,7 @@ const setupDevServer = (app, cb) => {
     resolve();
     cb(...args)
   };
-  const hmr = `webpack-hot-middleware/client?path=http://localhost:${configs.port}/__webpack_hmr`;
+  const hmr = `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr`;
   clientConfig.entry.app = [hmr, clientConfig.entry.app];
   clientConfig.output.filename = '[name].js'; // dev remove hash
   clientConfig.plugins.push(
