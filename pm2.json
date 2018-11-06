@@ -4,6 +4,7 @@
   "cwd": "./",
   "instances": 1,
   "env": {
+    "PORT": 18110,
     "NODE_ENV": "production"
   }
 }
