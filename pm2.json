@@ -1,6 +1,6 @@
 {
   "name": "emiya-template-vue-ssr",
-  "script": "index-production.js",
+  "script": "./index-production.js",
   "cwd": "./",
   "instances": 1,
   "env": {
