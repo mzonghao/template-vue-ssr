@@ -1,5 +1,5 @@
 const configBase = {
-  port: 18110,
+  port: 18100,
   buildDir: '/dist',
   cdn: '',
   progressBarColor: '#1890FF'
