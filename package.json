@@ -1,6 +1,6 @@
 {
   "name": "template-vue-ssr",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,9 +9,7 @@
     "build:client": "webpack --config ./configs/webpack.client.config.babel.js --progress --hide-modules",
     "build:server": "webpack --config ./configs/webpack.server.config.babel.js --progress --hide-modules",
     "compile:production": "babel index.js -o index-production.js",
-    "build:production": "NODE_ENV=production npm run build",
     "start": "npm run compile:production && node index-production",
-    "start:production": "NODE_ENV=production npm run build && npm run start",
     "lint": "npm run lint:src && npm run lint:configs",
     "lint:src": "./node_modules/.bin/eslint src/* --ext .js,.vue",
     "lint:configs": "./node_modules/.bin/eslint configs/* --ext .js"
