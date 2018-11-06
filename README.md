@@ -178,7 +178,7 @@
     ```
     import { setupApp, setupVuePlugins, bootstrap } from './setup-app';
 
-    setupApp(); // 挂载各种 service 实例，包括对 cookie、localStorage 进行操作的方法
+    setupApp(); // 挂载各种 service 实例，包括对 config、cookie、localStorage 进行操作的方法
     const { app, router, store } = bootstrap();
     DI.bindValue('vue', app);
     DI.bindValue('router', router);
