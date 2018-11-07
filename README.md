@@ -27,7 +27,7 @@
 ## 前言
 
 #### 向 [dayjs](https://github.com/iamkun/dayjs) 作者 [昆大佬](https://github.com/iamkun) 致敬，在他的思路和草稿基础上改进成这个 template
-#### [dayjs](https://github.com/iamkun/dayjs) 已经有一万五千多 star，欢迎关注
+#### [dayjs](https://github.com/iamkun/dayjs) 已经有一万六千左右 star，欢迎关注
 
 ## 分支概况
 
