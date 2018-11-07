@@ -1,6 +1,7 @@
 # template-vue-ssr
 
 ## 目录
+- [前言](#前言)
 - [分支概况](#分支概况)
     * [base](#base)
     * [base-with-koa](#base-with-koa)
@@ -22,6 +23,11 @@
     * [核心](#核心)
 
 ******
+
+## 前言
+
+#### 向 [dayjs](https://github.com/iamkun/dayjs) 作者 [昆大佬](https://github.com/iamkun) 致敬，在他的思路和草稿基础上形成了这个 template
+#### [dayjs](https://github.com/iamkun/dayjs) 已经有一万五千多 star，欢迎关注
 
 ## 分支概况
 
@@ -61,7 +67,7 @@
         ├── cookie          cookie 方法
         ├── filter          vue 的 filter
         ├── localStorage    localStorage
-        ├── plugins         vue 的拓展 plugins
+        ├── plugins         项目自定义 vue plugins
         ├── router          路由
         ├── services        封装 ajax 请求 基于axios
         ├── ssr             封装获取 ssr 数据的方法 实际从 store 中读取
