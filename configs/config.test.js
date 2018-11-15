@@ -1,7 +1,7 @@
 export default {
   api: {
     main: {
-      baseURL: 'https://dl4beidu.api.lncldapi.com/1.1/classes',
+      baseURL: 'https://api.tablex.top',
       timeout: 5000
     },
     spare: {

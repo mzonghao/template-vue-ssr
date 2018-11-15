@@ -55,7 +55,8 @@
       },
 
       users() {
-        return this.prefetchData ? this.prefetchData.results : [];
+        const { result } = this.prefetchData;
+        return this.prefetchData ? result.data : [];
       }
     },
 
