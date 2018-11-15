@@ -11,6 +11,14 @@ export function formatMobile(m) {
   return !s ? '' : `${s.slice(0, 3)}${s.slice(3, -4).replace(/./g, '*')}${s.slice(-4)}`;
 }
 
-export function translateIsAdmin(a) {
-  return a ? '是' : '否';
+export function translatePermission(a) {
+  switch (a) {
+    case 'rich':
+      return '土豪用户';
+    case 'admin':
+      return '管理员';
+    case 'normal':
+    default:
+      return '一般用户';
+  }
 }
