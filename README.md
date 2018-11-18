@@ -37,9 +37,6 @@
 ### base-with-koa
 * Koa2 版
 * [点击打开 base-with-koa 分支](https://github.com/mzonghao/template-vue-ssr/tree/base-with-koa)
-### publish
-* 发布示例用，点击链接看到的示例的分支，仅增加 pm2 守护进程
-* [点击打开 publish 分支](https://github.com/mzonghao/template-vue-ssr/tree/publish)
 
 ## 项目结构
 ```
