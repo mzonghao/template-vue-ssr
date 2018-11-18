@@ -1,0 +1,10 @@
+{
+  "name": "emiya-template-vue-ssr",
+  "script": "./index-production.js",
+  "cwd": "./",
+  "instances": 1,
+  "env": {
+    "PORT": 18110,
+    "NODE_ENV": "production"
+  }
+}
